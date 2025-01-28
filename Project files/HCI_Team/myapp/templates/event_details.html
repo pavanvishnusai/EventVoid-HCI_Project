@@ -1,0 +1,337 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/index.css' %}">
+    <style>
+      
+        body {
+          background-color: white;
+          overflow: auto;
+        margin: 0;
+
+        /* font-family: "Lucida Console", "Courier New", "monospace"; */
+        box-sizing: border-box;
+          word-wrap: break-word;
+        }
+        
+        
+      .page-buttons {
+                border-style: none; 
+                display: inline-block;
+                padding: 10px 20px;
+                color: white;
+      
+                background-color: none;
+                text-align: left;
+                text-decoration: none;
+                font-size: 24px;
+                margin-right: 10px;
+              }
+            
+              .page-buttons1 {                          
+                position: absolute;
+                display: inline-block;
+                top: 8%;
+                left:25%;
+                background-color: none;
+                font-weight: bold; 
+               
+                font-size: 48px;
+              }
+              
+            
+          .scrolling-images {
+            position: relative;
+            width: 100%;
+            overflow-x: hidden;
+            padding:10px;
+          }
+          
+          .image-container {
+            display: flex;
+            transition: transform 0.01s ease;
+          }
+          
+          .image-container img {
+            flex-shrink: 0;
+            width: 300px; /* Adjust the width as per your requirements */
+            height: auto;
+            margin-right: 10px; /* Adjust the spacing between images */
+          }
+          
+         
+              .scrolling-images {
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            .image-container {
+                width: 100%;
+                animation: scroll 100s linear infinite;
+                {% comment %} white-space: nowrap; {% endcomment %}
+            }
+            
+            .image-container img {
+                width: 50%;
+                display: inline-block;
+            }
+            
+            @keyframes scroll {
+                0% { transform: translateX(0%); }
+                100% { transform: translateX(-50%); }
+            }
+          
+            
+           
+           
+           
+           
+            .btn-primary {
+              position: relative;
+              left:50%;
+                  background-color: #335599;
+             color: #ffffff;
+             border-color: #1ab394;
+             padding:10px;
+         }
+     
+         .btn-primary:hover,
+         .btn-primary:focus {
+             background-color: #18a689;
+             border-color: #18a689;
+         }
+            .fa-long-arrow-right {
+                margin-left: 5px;
+            }
+        
+            {% comment %} .container {
+                margin: 0 auto;
+                max-width: 1170px;
+                position: absolute;
+                top:70%;
+                left:10%;
+                
+            }
+         {% endcomment %}
+          
+              
+              .header {
+                display: flex;
+                align-items: center;
+                position: absolute;
+              top:0%;
+              left:12%;
+              width:1350px;
+              height:1000px;
+  
+              }
+            
+              .header img {
+                width: 30px; /* Adjust the width as needed */
+                height: 30px; /* Adjust the height as needed */
+                margin-right: 10px; /* Adjust the margin as needed */
+              }
+              .top-image{
+                position:'absolute';
+                background-color: #335599;
+                padding:10px;
+
+                
+              }
+              
+              .top-image{
+                display: block;
+                width: 100%;
+                height: auto;
+                transition: transform 0.3s ease;
+              }
+              
+              .top-image:hover img {
+                transform: scale(1.2); /* Adjust the scale factor to control the level of zoom */
+              }
+              .container {
+                margin: 0 auto;
+                max-width: 1170px;
+                position:absolute;
+                top:70%;
+                left:10%;
+            }
+    
+            .event-title {
+              position:'absolute';
+              text-decoration: underline;
+              left:10%;
+                font-size: 30px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 10px;
+    
+            }
+    
+            .event-description {
+                font-size: 16px;
+                color: #777;
+                margin-bottom: 20px;
+                position:absolute;
+                left:40%;
+            }
+    
+            .event-price {
+                font-size: 14px;
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #1ab394;
+                padding: 6px 12px;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+    
+            .event-category {
+                font-size: 14px;
+                color: #888888;
+                margin-bottom: 10px;
+            }
+    
+            .event-image {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+        </style>
+</head>
+{% csrf_token %}
+<body>
+    <div class="header">
+        {% comment %} <img src="{% static 'logo.png'%}" alt="Logo" class="logo"> {% endcomment %}
+      </div> 
+      <div class="top-image">
+        <img src="{% static 'logo_wb.png'%}" alt="Image" width="200" height="100">
+      </div>
+     
+  <div class="scrolling-images">
+    <div class="image-container">
+        <img src="{% static 'event1.png' %}" alt="Image 1">
+        <img src="{% static 'event2.png' %}" alt="Image 2">
+        <img src="{% static 'event3.png' %}" alt="Image 4">
+    </div>
+</div>
+
+    <div class='page-buttons1'>
+      <a href="{% url 'index' %}" class='page-buttons'>Home</a> 
+      <a href="{% url 'events_list' %}" class='page-buttons'>Events</a> 
+      <a href="{% url 'my_bookings' %}" class='page-buttons'>My Bookings</a>
+      <!-- <a href="{% url 'support' %}"class='page-buttons'>Support</a>  -->
+      <a href="{% url 'aboutus' %}"class='page-buttons'>About us</a>
+      <br>
+
+    </div>
+    <div class="container">
+      <div class="event-details">
+          <div class="event-info">
+              <h2 class="event-title">{{ event.title }}</h2>
+              <br>
+              <h3>Description:</h3>
+              <br>
+              <div class="event-time">{{ event.description }}</div>
+              <h3>Location:</h3> 
+              <br>
+              <div class="event-location">{{ event.location }}</div>
+              <br>
+              <h3>Date&time:</h3> 
+              <br>
+              <div class="event-time">{{ event.event_date }}</div>
+              <br>
+              <h3>Rating:</h3> 
+              <br>
+              <div class="event-price">{{ event.rating }}</div>
+              <br>
+              <h3>Rules:</h3>
+              <br>
+              <div class="event-time">{{ event.rules|linebreaks }}</div>
+              <br>
+              <div class="event-info">
+            
+                <a href="{% url 'booking_form' event.id %}" class="btn btn-primary">Continue Booking</a>
+            </div>
+              
+          </div>
+      </div>
+  </div>
+    
+    
+    
+    
+    
+	
+</body>
+<script>
+  // Check if the user is authenticated
+  var isAuthenticated = "{{ user.is_authenticated }}";
+  
+  // Get the login/logout link
+  var loginLink = document.getElementById("login-link");
+  
+  // If the user is authenticated, change the link to "logout"
+  if (isAuthenticated) {
+      loginLink.innerHTML = "logout";
+      loginLink.href = "{% url 'logout' %}";
+  } else {
+      // If the user is not authenticated, keep the link as "login"
+      loginLink.innerHTML = "login";
+      loginLink.href = "{% url 'login' %}";
+  }
+  <script>
+    // Set the scroll speed (adjust as needed)
+    var scrollSpeed = 1000;
+  
+    // Get the scrolling container element
+    var scrollingContainer = document.querySelector(".scrolling-images");
+  
+    // Clone the images
+    var images = scrollingContainer.querySelectorAll("img");
+    for (var i = 0; i < images.length; i++) {
+      var clone = images[i].cloneNode(true);
+      scrollingContainer.appendChild(clone);
+    }
+  
+    // Start the scrolling animation
+    function startScrolling() {
+      var containerWidth = scrollingContainer.offsetWidth;
+      var currentScrollPosition = 0;
+  
+      function scroll() {
+        currentScrollPosition += scrollSpeed;
+        if (currentScrollPosition >= containerWidth) {
+          currentScrollPosition = 0;
+        }
+        scrollingContainer.style.transform = "translateX(-" + currentScrollPosition + "px)";
+        requestAnimationFrame(scroll);
+      }
+  
+      scroll();
+    }
+  
+    // Wait for the images to load before starting the scrolling animation
+    window.addEventListener("load", startScrolling);
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.btn.btn-xs.btn-outline.btn-primary');
+        buttons.forEach(function(button) {
+          button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button behavior
+            showLoadingSpinner(); // Display the loading spinner
+      
+            // Simulate a delay to demonstrate the loading transition
+            setTimeout(function() {
+              const url = button.getAttribute('href');
+              window.location.href = url; // Navigate to the event details page
+            }, 20000); // Adjust the delay as needed
+          });
+        });
+      });
+      
+
+</script>
+</html>

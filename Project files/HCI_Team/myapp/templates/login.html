@@ -1,0 +1,106 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  {% comment %} <link rel="stylesheet" type="text/css" href="style.css"> {% endcomment %}
+  <style>
+    body{
+      color:black;
+      background-color:white;
+    }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      }
+      
+      h1 {
+        text-align: center;
+        background-color: #002242;
+        
+        color:white;
+        
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label, input {
+        margin-bottom: 10px;
+      }
+      
+      input[type="submit"] {
+        background-color: #002242;
+        color:white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      input[type="submit"]:hover{
+        background-color: #18a689;
+        border-color: #18a689;
+      }
+      
+      a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 20px;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+        color: green;
+        background-color:orange;
+        
+      }
+      .top-image{
+        position:'absolute';
+        background-color: #335599;
+        padding:10px;
+        text-align:center;
+        
+      }
+      
+      .top-image{
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+      }
+      
+      .top-image:hover img {
+        transform: scale(1.2); /* Adjust the scale factor to control the level of zoom */
+      }
+   
+      
+  </style>
+</head>
+<body>
+  <div class="top-image">
+    <img src="{% static 'logo_wb.png'%}" alt="Image" width="200" height="100">
+
+  </div>
+ 
+  <div class="container">
+    <h1>Login Page <br> Sign In to Your Account</h1>
+    <form action="{% url 'myapp/login' %}" method="post">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" placeholder= "Enter Username" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" placeholder= "Password" id="password" name="password" required>
+
+      <input class='l1'type="submit" value="Login">
+    </form>
+    <p>New user? <a href="{% url 'signup' %}">Sign up</a></p>
+  </div>
+</body>
+</html>

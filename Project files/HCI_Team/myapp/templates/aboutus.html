@@ -1,0 +1,322 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/index.css' %}">
+    <style>
+      body {
+        background-color: white;
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+          word-wrap: break-word;
+          /* font-family: "Lucida Console", "Courier New", "monospace"; */
+
+      }
+      
+       
+       .search{
+              position: absolute;
+              font: 16px system-ui; 
+              color: #fff;
+              height: 100px;
+              width: 100px;
+              padding: 10px 10px;
+              text-align: center;
+              left: 30%;
+              top: 0%;
+       }
+       #search{
+        width: 400px; /* Adjust the width as desired */
+        height: 30px; /* Adjust the height as desired */
+      }
+    
+      .scrolling-images {
+        position: relative;
+        width: 100%;
+        overflow-x: hidden;
+        padding:10px;
+      }
+      
+      .image-container {
+        display: flex;
+        transition: transform 0.01s ease;
+      }
+      
+      .image-container img {
+        flex-shrink: 0;
+        width: 300px; /* Adjust the width as per your requirements */
+        height: auto;
+        margin-right: 10px; /* Adjust the spacing between images */
+      }
+      
+     
+          .scrolling-images {
+            width: 100%;
+            overflow: hidden;
+            position:relative;
+            top:-40px;
+        }
+        
+        .image-container {
+            width: 100%;
+            animation: scroll 100s linear infinite;
+            {% comment %} white-space: nowrap; {% endcomment %}
+        }
+        
+        .image-container img {
+            width: 50%;
+            display: inline-block;
+        }
+        @keyframes scroll {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+      }
+      
+           
+            .login{
+              color: white; /* change color */
+              border-style: solid;
+              position: relative; 
+              top:15px; 
+              {% comment %} top:%; {% endcomment %}
+              padding:2px;
+            }
+             .login1 {
+              position: relative;
+              float: right;
+              top:-120px;
+              right:30px;
+              padding: 10px;
+              background-color: none;
+            }
+            
+            .login1 p,
+            .login1 a {
+              color: #fff;
+              margin: 0;
+              padding: 5px;
+            }
+            
+        .page-buttons {
+            border-style: none; 
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+  
+            background-color: none;
+            text-align: left;
+            text-decoration: none;
+            font-size: 24px;
+            margin-right: 10px;
+          }
+         
+      .page-buttons1 {                          
+        position: absolute;
+        display: inline-block;
+        top: 8%;
+        left:25%;
+        background-color: none;
+        font-weight: bold; 
+       
+        font-size: 48px;
+      }
+        
+       .search h1 {
+                font-size: 36px;
+                font-weight: bold;
+                text-align: left;
+                color: orange;
+              }
+          .main1{
+            font-size:30px;
+            position: relative;
+            display: inline-block;
+            padding:20px;
+            left:0%;
+            top:-70px;
+
+          }
+          .main2{
+            font-size:20px;
+
+            position: relative;
+            left:5%;
+            top:-130px;
+            display: inline-block;
+            padding:20px;
+            text-align:justify;
+           
+          }
+          .main3{
+            color:black;
+            font-size:30px;
+            position: relative;
+            display: inline-block;
+            font-size: 30px;
+            left:9%;
+            top:-130px;
+
+
+            /* top: -0px; */
+            /* left: 10%; */
+            
+            
+          }
+            .top-image{
+              position:'absolute';
+              background-color: #335599;
+              padding:10px;
+              
+            }
+            
+            .top-image{
+              display: block;
+              width: 100%;
+              height: auto;
+              transition: transform 0.3s ease;
+            }
+            
+            .top-image:hover img {
+              transform: scale(1.2); /* Adjust the scale factor to control the level of zoom */
+            }
+            .part1{
+              position: absolute;
+              top:80%;
+              left:40%;
+            }
+            .part2{
+              position: absolute;
+              top:80%;
+              left:10%;
+            }
+          .main
+          {
+            position: absolute;
+            left:5%;
+          
+          }
+          
+        </style>
+</head>
+{% csrf_token %}
+<body>
+  <div class="header">
+   
+  </div> 
+  <div class="top-image">
+    <img src="{% static 'logo_wb.png'%}" alt="Image" width="200" height="100">
+
+  </div>
+  {% if user.is_authenticated %}
+  <div class='login1'>
+
+      <br>
+    <p style="color:white">Welcome, {{ user.username }}</p>
+
+      <a href="{% url 'logout' %}" class='login' style="text-decoration: none;color:white">logout</a>
+  </div>
+  {% else %}
+  <div class='login1'>
+      <a href="{% url 'login' %}" class='login' style="text-decoration: none;color:white">login</a>
+
+  </div>
+  {% endif %}
+
+  
+  <div class="scrolling-images">
+    <div class="image-container">
+        <img src="{% static 'event1.png' %}" alt="Image 1">
+        <img src="{% static 'event2.png' %}" alt="Image 2">
+           <img src="{% static 'event3.png' %}" alt="Image 4">
+    </div>
+</div>
+
+ 
+
+    <div class='page-buttons1'>
+      <a href="" class='page-buttons'>Home</a> 
+      <a href="{% url 'events_list' %}" class='page-buttons'>Events</a> 
+      <a href="{% url 'my_bookings' %}" class='page-buttons'> My Bookings</a> 
+
+      <!-- <a href="{% url 'map' %}" class='page-buttons'>College Map</a> -->
+      <!-- <a href="{% url 'support' %}"class='page-buttons'>Support</a>  -->
+      <a href="{% url 'aboutus' %}"class='page-buttons'>About us</a>
+      <br>
+     
+    </div>
+    <div class='main'>
+      <h2>Who Are We?</h2>
+      <p>We are young & wild explorers ----- out on a journey to turn on your vibe</p>
+      <p>The mission is to provide the finest website for locating events.</p>
+  </div>
+  <div class='part1'>
+      <img src="{% static 'varshith1.jpg'%}" alt="BSR image">
+      <h3>Varshith Reddy Ganji</h3>
+      <p>Operations</p>  
+  </div>
+  <div class='part2'>
+    <img src="{% static 'saketh1.jpg'%}" alt="BSR image">
+    <h3>Sai Saketh Reddy Bonthu (BSR)</h3>
+    <p>Web Developer</p>  
+</div>
+      <br>
+      <br>
+     
+</body>
+<script>
+  // Check if the user is authenticated
+  var isAuthenticated = "{{ user.is_authenticated }}";
+  
+  // Get the login/logout link
+  var loginLink = document.getElementById("login-link");
+  
+  // If the user is authenticated, change the link to "logout"
+  if (isAuthenticated) {
+      loginLink.innerHTML = "logout";
+      loginLink.href = "{% url 'logout' %}";
+  } else {
+      // If the user is not authenticated, keep the link as "login"
+      loginLink.innerHTML = "login";
+      loginLink.href = "{% url 'login' %}";
+  }
+    // Set the scroll speed (adjust as needed)
+    var scrollSpeed = 1000;
+  
+    // Get the scrolling container element
+    var scrollingContainer = document.querySelector(".scrolling-images");
+  
+    // Clone the images
+    var images = scrollingContainer.querySelectorAll("img");
+    for (var i = 0; i < images.length; i++) {
+      var clone = images[i].cloneNode(true);
+      scrollingContainer.appendChild(clone);
+    }
+  
+    // Start the scrolling animation
+    function startScrolling() {
+      var containerWidth = scrollingContainer.offsetWidth;
+      var currentScrollPosition = 0;
+  
+      function scroll() {
+        currentScrollPosition += scrollSpeed;
+        if (currentScrollPosition >= containerWidth) {
+          currentScrollPosition = 0;
+        }
+        scrollingContainer.style.transform = "translateX(-" + currentScrollPosition + "px)";
+        requestAnimationFrame(scroll);
+      }
+  
+      scroll();
+    }
+  
+    // Wait for the images to load before starting the scrolling animation
+    window.addEventListener("load", startScrolling);
+  </script>
+
+</script>
+</html>

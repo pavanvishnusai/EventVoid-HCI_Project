@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./myapp",
+        "./chatbot_project"
+    ]
+}

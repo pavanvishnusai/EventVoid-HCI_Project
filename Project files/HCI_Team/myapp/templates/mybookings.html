@@ -1,0 +1,285 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <style>
+      body {
+        background-color: white;
+        overflow: auto;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        /* font-family: "Lucida Console", "Courier New", "monospace"; */
+
+
+    }
+        
+        
+      .page-buttons {
+                border-style: none; 
+                display: inline-block;
+                padding: 10px 20px;
+                color: white;
+      
+                background-color: none;
+                text-align: left;
+                text-decoration: none;
+            font-size: 24px;
+                
+                margin-right: 10px;
+              }
+             
+          .page-buttons1 {                          
+            position: absolute;
+            display: inline-block;
+            top: 8%;
+            left:25%;
+            background-color: none;
+            font-weight: bold; 
+           
+            font-size: 48px;
+          }
+            
+          .scrolling-images {
+            position: relative;
+            width: 100%;
+            overflow-x: hidden;
+            padding:10px;
+          }
+          
+          .image-container {
+            display: flex;
+            transition: transform 0.01s ease;
+          }
+          
+          .image-container img {
+            flex-shrink: 0;
+            width: 300px; /* Adjust the width as per your requirements */
+            height: auto;
+            margin-right: 10px; /* Adjust the spacing between images */
+          }
+          
+         
+              .scrolling-images {
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            .image-container {
+                width: 100%;
+                animation: scroll 100s linear infinite;
+                {% comment %} white-space: nowrap; {% endcomment %}
+            }
+            
+            .image-container img {
+                width: 50%;
+                display: inline-block;
+            }
+            @keyframes scroll {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-50%); }
+          }
+          
+         
+            .product-box {
+                border: 1px solid #e7eaec;
+                width:500px;
+                
+
+            }
+        
+            .product-box:hover,
+            .product-box.active {
+                border: 1px solid transparent;
+                -webkit-box-shadow: 0 3px 7px 0 #a8a8a8;
+                -moz-box-shadow: 0 3px 7px 0 #a8a8a8;
+                box-shadow: 0 3px 7px 0 #a8a8a8;
+            }
+        
+            .product-imitation {
+                text-align: center;
+                padding: 90px 0;
+                background-color: #f8f8f9;
+                color: #bebec3;
+                font-weight: 600;
+                padding: 10px;
+                width:100px;
+
+
+            }
+            .product-desc {
+                padding: 20px;
+                position: relative;
+
+            }
+        
+           
+        
+            
+            .text-right {
+                text-align: right;
+            }
+        
+            .btn-primary {
+                 background-color: #335599;
+                color: #ffffff;
+                border-color: #1ab394;
+                padding:10px;
+            }
+        
+            .btn-primary:hover,
+            .btn-primary:focus {
+                background-color: #18a689;
+                border-color: #18a689;
+            }
+        
+            .fa-long-arrow-right {
+                margin-left: 5px;
+            }
+        
+            /* .container {
+                margin: 0 auto;
+                max-width: 1170px;
+                position: absolute;
+                top:70%;
+                left:10%;
+                
+            }
+         */
+            .row {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+        
+            .col-md-3 {
+                float: left;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .hidden {
+                display: none;
+              }
+              
+              .c1{
+                font-size:30px;
+                padding:10px;
+            
+              }
+              .imp{
+                font-size:20px;
+                text-decoration: underline;
+              }
+              
+              .top-image{
+                position:'absolute';
+                background-color: #335599;
+                padding:10px;
+
+                
+              }
+              
+              .top-image{
+                display: block;
+                width: 100%;
+                height: auto;
+                transition: transform 0.3s ease;
+              }
+              
+              .top-image:hover img {
+                transform: scale(1.2); /* Adjust the scale factor to control the level of zoom */
+              }
+            .container {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    tbody td {
+        vertical-align: middle;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="top-image">
+        <img src="{% static 'logo_wb.png'%}" alt="Image" width="200" height="100">
+      </div>
+     
+      <div class="scrolling-images">
+        <div class="image-container">
+            <img src="{% static 'event1.png' %}" alt="Image 1">
+            <img src="{% static 'event2.png' %}" alt="Image 2">
+            {% comment %} <img src="{% static 'gatorade.jpeg' %}" alt="Image 3"> {% endcomment %}
+            <img src="{% static 'event3.png' %}" alt="Image 4">
+        </div>
+    </div>
+    
+    <div class='page-buttons1'>
+      <a href="{% url 'index' %}" class='page-buttons'>Home</a> 
+      <a href="{% url 'events_list' %}" class='page-buttons'>Events</a> 
+      <a href="{% url 'my_bookings' %}" class='page-buttons'> My Bookings</a> 
+      <!-- <a href="{% url 'support' %}"class='page-buttons'>Support</a>  -->
+      <a href="{% url 'aboutus' %}"class='page-buttons'>About us</a>
+      <br>
+    </div>
+      
+    <div class="container">  
+    <h1>Booking Summary</h1>
+
+    <table>
+        <thead >
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+            <tr>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.email }}</td>
+                <td>{{ participant.phone }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ </div>
+</body>
+</html>

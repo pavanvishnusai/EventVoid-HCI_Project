@@ -1,0 +1,87 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/index.css' %}">
+    <!-- Add your custom styles here -->
+    <style>
+        /* Add your custom styles for the booking form page */
+        .top-image{
+        position:'absolute';
+        background-color: #335599;
+        padding:10px;
+        text-align:center;
+        
+      }
+      
+      .top-image{
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+      }
+      
+      .top-image:hover img {
+        transform: scale(1.2); /* Adjust the scale factor to control the level of zoom */
+      }
+      h1 {
+        text-align: center;
+        background-color: #002242;
+        
+        color:white;
+        
+      }
+      .container{
+        text-align: center;
+      }
+      #name, #email, #phone{
+        width: 400px; /* Adjust the width as desired */
+        height: 30px; /* Adjust the height as desired */
+      }
+      label{
+        font-size: 30px;
+      }
+     .page-buttons1 {                          
+            position: absolute;
+            display: inline-block;
+            top: 30%;
+            left:45%;
+            color: black;
+            text-decoration: none;
+
+            background-color: none;
+            /* font-weight: bold;  */
+           
+            font-size: 30px;
+          }
+      
+      
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- Your header content goes here -->
+    </div> 
+    <div class="top-image">
+        <img src="{% static 'logo_wb.png'%}" alt="Image" width="200" height="100">
+    
+      </div>
+     
+
+    <div class="container">
+        <h1>Thanks for Booking..</h1>
+        
+            <!-- Add more fields as needed -->
+    </div>
+    <div class='page-buttons1'>
+        <a href="{% url 'index' %}" class='page-buttons'> Go To Home</a> 
+        <br>
+  
+      </div>
+
+    <!-- Add your JavaScript code here -->
+
+   
+</body>
+</html>

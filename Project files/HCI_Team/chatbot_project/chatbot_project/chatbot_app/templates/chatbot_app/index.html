@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+    <script>
+        var socket = new WebSocket('ws://' + window.location.host + '/chatbot/');
+
+        socket.onmessage = function(e) {
+            var message = e.data;
+            var chatlog = document.getElementById('chatlog');
+            var div = document.createElement('div');
+            div.innerHTML = '<b>Bot:</b> ' + message;
+            chatlog.appendChild(div);
+        };
+
+        function send_message() {
+            var message = document.getElementById('message').value;
+            var chatlog = document.getElementById('chatlog');
+            var div = document.createElement('div');
+            div.innerHTML = '<b>You:</b> ' + message;
+            chatlog.appendChild(div);
+            socket.send(message);
+        }
+</script>
+</
